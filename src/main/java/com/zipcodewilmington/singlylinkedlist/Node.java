@@ -36,7 +36,7 @@ public class Node<T> {
             return false;
         }
         Node n = (Node) o;
-        return isNextEqual(n) && isElementEqual(n);
+        return isNextEqual(n) && isElementEqual((T) n.element);
     }
 
     private boolean isNextEqual(Node n) {
@@ -49,13 +49,13 @@ public class Node<T> {
         return this.next.equals(n.next);
     }
 
-    private boolean isElementEqual(Node n) {
-        if(this.element == null && n.element == null){
+    protected boolean isElementEqual(T value) {
+        if(this.element == null && value == null){
             return true;
         }
-        if(this.element == null || n.element == null){
+        if(this.element == null || value == null){
             return false;
         }
-        return this.element.equals(n.element);
+        return this.element.equals(value);
     }
 }

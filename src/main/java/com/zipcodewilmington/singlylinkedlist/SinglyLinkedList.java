@@ -81,4 +81,21 @@ public class SinglyLinkedList<T> {
         return size(currentNode.getNext()) + 1;
     }
 
+    public int find(T elementToFind) {
+        return find(elementToFind, headNode, 0);
+    }
+
+    private int find(T elementToFind, Node<T> currentNode, int idx) {
+        if(currentNode == null){
+            return -1;
+        }
+        if(currentNode.isElementEqual(elementToFind)){
+            return idx;
+        }
+        return find(elementToFind, currentNode.getNext(), idx + 1);
+    }
+
+    public boolean contains(T elementToFind) {
+        return find(elementToFind) != -1;
+    }
 }

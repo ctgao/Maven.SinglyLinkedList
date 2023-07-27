@@ -10,11 +10,10 @@ public class NodeTest{
     @Test
     public void constructorTest(){
         //Given
-        int expected = 0;
         //When
         Node thisNode = new Node();
         //Then
-        Assert.assertEquals(expected, thisNode.getElement());
+        Assert.assertNull(thisNode.getElement());
         Assert.assertEquals(null, thisNode.getNext());
     }
     @Test
@@ -40,17 +39,17 @@ public class NodeTest{
     }
 
     @Test
-    public void getElement() {
+    public void getElementTest() {
         //Given
-        int expected = 0;
-        //When
         Node thisNode = new Node();
+        //When
+        Object actual = thisNode.getElement();
         //Then
-        Assert.assertEquals(expected, thisNode.getElement());
+        Assert.assertNull(actual);
     }
 
     @Test
-    public void setElement() {
+    public void setElementTest() {
         //Given
         int expected = 18;
         Node thisNode = new Node();
@@ -61,7 +60,7 @@ public class NodeTest{
     }
 
     @Test
-    public void getNext() {
+    public void getNextTest() {
         //Given
         Node thisNode = new Node();
         //When
@@ -70,7 +69,7 @@ public class NodeTest{
     }
 
     @Test
-    public void setNext() {
+    public void setNextTest() {
         //Given
         Node thisNode = new Node(18);
         Node nextNode = new Node();
@@ -78,5 +77,44 @@ public class NodeTest{
         thisNode.setNext(nextNode);
         //Then
         Assert.assertEquals(nextNode, thisNode.getNext());
+    }
+
+    @Test
+    public void isElementEqualTest(){
+        //Given
+        Node<Integer> nextNode = new Node();
+        //When
+        boolean actual = nextNode.isElementEqual(null);
+        //Then
+        Assert.assertTrue(actual);
+    }
+    @Test
+    public void isElementEqualTest1(){
+        //Given
+        Node<Integer> nextNode = new Node(30);
+        //When
+        boolean actual = nextNode.isElementEqual(null);
+        //Then
+        Assert.assertFalse(actual);
+    }
+    @Test
+    public void isElementEqualTest2(){
+        //Given
+        String input = "aur naur";
+        Node<String> nextNode = new Node(input);
+        //When
+        boolean actual = nextNode.isElementEqual(input);
+        //Then
+        Assert.assertTrue(actual);
+    }
+    @Test
+    public void isElementEqualTest3(){
+        //Given
+        String wrong = "ewwww";
+        Node<String> nextNode = new Node("");
+        //When
+        boolean actual = nextNode.isElementEqual(wrong);
+        //Then
+        Assert.assertFalse(actual);
     }
 }
