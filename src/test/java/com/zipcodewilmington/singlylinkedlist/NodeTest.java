@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class NodeTest {
+public class NodeTest{
 
     @Test
     public void constructorTest(){
