@@ -35,6 +35,29 @@ public class SortTest {
         //Then
         Assert.assertTrue(expected.equals(actual));
     }
+    @Test
+    public void sortIntegerTest2() {
+        //Given
+        Integer[] inputValues = new Integer[]{7, 5, 9, 8, 3, 6};
+        //Given
+        SinglyLinkedList<Integer> expected = new SinglyLinkedList<>(inputValues[4]);
+        expected.add(inputValues[1]);
+        expected.add(inputValues[5]);
+        expected.add(inputValues[0]);
+        expected.add(inputValues[3]);
+        expected.add(inputValues[2]);
+        //Given
+        SinglyLinkedList<Integer> actual = new SinglyLinkedList(inputValues[0]);
+        actual.add(inputValues[1]);
+        actual.add(inputValues[2]);
+        actual.add(inputValues[3]);
+        actual.add(inputValues[4]);
+        actual.add(inputValues[5]);
+        //When
+        actual.sort();
+        //Then
+        Assert.assertTrue(expected.equals(actual));
+    }
 
     @Test
     public void sortStringTest() {

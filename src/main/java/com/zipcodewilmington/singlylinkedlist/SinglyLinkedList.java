@@ -3,7 +3,7 @@ package com.zipcodewilmington.singlylinkedlist;
 /**
  * Created by leon on 1/10/18.
  */
-public class SinglyLinkedList<T> {
+public class SinglyLinkedList<T extends Comparable<T>> {
     private Node<T> headNode;
 
     // Constructor
@@ -143,8 +143,50 @@ public class SinglyLinkedList<T> {
     }
 
     public void sort() {
+        if(headNode == null){
+            return;
+        }
         // not sure if this is the most efficient sorting method but this is what i got
-        // basically, find the smallest and yeetus it up
-        
+        // basically, swap if your neighbor is smaller than you
+        for(int i = size() - 1; i > 0; i--){
+            boolean noMoreSwaps = true;
+            // always start at the beginning
+            int tempIdx = 0;
+            Node<T> previousNode = null;
+            Node<T> currentNode = headNode;
+            Node<T> nextNode = currentNode.getNext();
+            while(tempIdx < i){
+                if(currentNode.getElement().compareTo(nextNode.getElement()) > 0){
+                    // current node element is greater than next node element
+                    // then DO THE SWAP
+                    if(previousNode == null){
+                        // at the beginning of the linked list
+                        headNode = nextNode;
+                    }
+                    else{
+                        previousNode.setNext(nextNode);
+                    }
+                    currentNode.setNext(currentNode.getNext().getNext());
+                    nextNode.setNext(currentNode);
+                    noMoreSwaps = false;
+                }
+                else {
+                    //comparison fails, update values
+                    currentNode = currentNode.getNext();
+                }
+                if(previousNode == null){
+                    previousNode = headNode;
+                }
+                else {
+                    previousNode = previousNode.getNext();
+                }
+                nextNode = currentNode.getNext();
+                // update index
+                tempIdx++;
+            }
+            if(noMoreSwaps){
+                return;
+            }
+        }
     }
 }
