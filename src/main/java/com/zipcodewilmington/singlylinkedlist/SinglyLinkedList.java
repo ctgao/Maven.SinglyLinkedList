@@ -98,4 +98,53 @@ public class SinglyLinkedList<T> {
     public boolean contains(T elementToFind) {
         return find(elementToFind) != -1;
     }
+
+    public Node get(int idx) {
+        return get(idx, headNode);
+    }
+
+    private Node get(int idx, Node<T> currentNode){
+        if(idx == 0){
+            return currentNode;
+        }
+        return get(idx - 1, currentNode.getNext());
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o == null){
+            return false;
+        }
+        SinglyLinkedList<T> other = (SinglyLinkedList<T>) o;
+        if(this.headNode == null && other.headNode == null){
+            return true;
+        }
+        else if(this.headNode == null || other.headNode == null){
+            return false;
+        }
+        else{
+            return this.headNode.equals(other.headNode);
+        }
+    }
+
+    public SinglyLinkedList<T> copy() {
+        SinglyLinkedList<T> result = new SinglyLinkedList<>();
+        // for all elements in the previous linked list, add them to this one
+        copy(result, headNode);
+        return result;
+    }
+
+    private void copy(SinglyLinkedList<T> result, Node<T> currentNode) {
+        if(currentNode == null){
+            return;
+        }
+        result.add(new Node<>(currentNode.getElement()));
+        copy(result, currentNode.getNext());
+    }
+
+    public void sort() {
+        // not sure if this is the most efficient sorting method but this is what i got
+        // basically, find the smallest and yeetus it up
+        
+    }
 }
